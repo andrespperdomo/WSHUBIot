@@ -1,0 +1,305 @@
+######## CONFIGURACIONES JAR DE CONEXIONES ###################################
+#CONFIGURACION DE APLICACION
+data.base.cargue.properties=SMO
+data.base.cargue.properties.tipo=JNDI
+
+#CONFIGURACION DE LOG4J DEL JAR
+data.base.logger.type.config=prop
+data.base.logger.file.config=/PropertiesAppWL/WSHUBIoT/Log4jWSHUBIoT.properties
+sql.tbl.properties.consulta=SELECT TABLA PROPIEDAD, VALOR FROM TBL_PROPIEDADES WHERE ESTADO = 1 AND TABLA IS NOT NULL AND APLICACION = ?
+#Conexion a SMSSERV
+#app.tipo.conexion.SMSSERV=JNDI
+#app.conexion.SMSSERV=SMO
+
+#Conexion a BSCS
+#app.tipo.conexion.BSCS=JNDI
+#app.conexion.BSCS=BSCS
+
+#Conexion a BSCS
+#app.tipo.conexion.COMCORP=JNDI
+#app.conexion.COMCORP=COMCORP
+
+#Strings de conexion
+data.base.jndi.data.source.SMO=jdbcSMO
+#data.base.jndi.data.source.BSCS=jdbcBSCS
+#data.base.jndi.data.source.COMCORP=jdbcCOMCORP
+
+######## EXCEPCIONES DE LA APP ###############################################
+#app.exception.000=ERROR GRAVE EN LA APLICACION. No se encuentra la consulta validar usuario y contrase\u00f1a
+#app.exception.100=ERROR GRAVE EN LA APLICACION. No se encuentra la consulta solicitada
+#app.exception.101=Error de la primera validacion
+#app.exception.102=Error de la segunda validacion
+#app.exception.901= Error consultando oferta en memoria
+######## CONSULTAS UTILIZADAS EN LA APP ######################################
+app.consulta.valida.usuario.psw={ call INH_SMO.PRC_VAL_USUARIO_REFRESH(?, ?, ?, ?, ?, ?, ?) }
+#app.consulta.autentica={ call INH_SMO.PKG_HUB_IOT.PRC_HUB_AUTENTICAR(?, ?, ?, ?, ?, ?) }
+#app.sql.planes={ call SYSADM.PKG_IOT.PRC_LISTAR_PLANES(?, ?, ?, ?, ?) }
+#app.sql.transaccion={ call INH_SMO.PKG_HUB_IOT.PRC_REGTABLA_TRANS(?, ?, ?, ?, ?, ?, ?, ?) }
+#app.sql.parametros={ call INH_SMO.PKG_HUB_IOT.PRC_CONSULTA_CONFIG(?, ?, ?) }
+#app.sql.mensajes={ call INH_SMO.PKG_HUB_IOT.PRC_CONSULTA_MENSAJES(?, ?, ?) }
+#app.sql.cambio.plan={ call SYSADM.PKG_IOT.PRC_CAMBIO_PLAN_IOT(?, ?, ?, ?, ?, ?) }
+#app.sql.consulta.perfil.activacion={ call SYSADM.PKG_IOT.PRC_CONSULTA_PERFIL_ACTIVACION (?, ?, ?, ?, ?, ?, ?) }
+#app.sql.unprovisioning={ call SYSADM.PKG_IOT.PRC_DESASIGNAR_RECURSOS(?, ?, ?) }
+#app.sql.provisioning={ call SYSADM.PKG_IOT.PRC_REGISTRA_RECURSOS(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }
+#app.sql.query.user ={ call INH_NEWAC.PKG_GENERAL_MOTORS.GM_CONSULTA_SUSCRIPTOR(?, ?, ?, ?) }
+#app.sql.updateUser={call  INH_NEWAC.PKG_GENERAL_MOTORS.gm_actualiza_suscriptor (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }
+#app.sql.actestado.suscriptor={ call pkg_general_motors.gm_actestado_suscriptor(?,?,?,?,?) }
+#app.sql.crear.suscriptor={ call PKG_GENERAL_MOTORS.GM_CREA_SUSCRIPTOR(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }
+#app.sql.inserta.registro={ call INH_SMO.PKG_HUB_IOT.PRC_INSERT_REGISTRO(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }
+#app.sql.datos.plan={ call SYSADM.PKG_IOT.PRC_CONSULTA_DATOS_PLAN(?, ?, ?, ?) }
+#app.sql.iccd={ call INH_SMO.PKG_HUB_IOT.PRC_CONSULTA_ICCID(?, ?, ?, ?, ?) }
+###############################################################################
+#prc.autentica.exitoso=0
+#app.tipo.encriptacion=SHA-256
+#app.consulta.tiempo.espera=3
+#consulta.tiempo.espera.aut=3
+#consulta.tiempo.espera.planes=3
+#consulta.tiempo.espera.param=3
+#consulta.tiempo.espera.msj=3
+#consulta.tiempo.espera.trans=3
+#consulta.tiempo.espera.cambio=10
+#consulta.tiempo.espera.perfil=3
+#consulta.tiempo.espera.desaprovi=3
+#consulta.tiempo.espera.aprovi=3
+#consulta.tiempo.espera.queryuser=3
+#consulta.tiempo.espera.crear.usuario=3
+#app.prc.aprvisiona.exito=0
+#app.prc.desaprvisiona.exito=0
+#app.prc.poliedro.exito=0
+#app.nom.imsi=VCIMSI
+#app.nom.msisdn=NMMSISDN
+#app.nom.codsal=VCCODSAL
+#app.nom.dessal=VCDESSAL
+#app.hora.inicial=00
+#app.minuto.inicial=01
+#app.min.retraso=1440
+#app.val.country=COL
+#app.nom.enterprice=VCENTERPRISEID
+#app.nom.provider=VCPROVIDERID
+#app.nom.plan=VCPLAN_ID
+#app.nom.nmtcode=NMTMCODE
+#app.nom.min=NMCANT_INC_MIN
+#app.nom.sms=NMCANT_INC_SMS
+#app.nom.mb=NMCANT_INC_MB
+#app.nom.price=NMCFM
+#app.nom.product=VCTIPOPRODUCTO
+#app.codigo.empresa=1
+#app.constante.verdadero=1
+#app.constante.falso=0
+#app.iccid.default=-1
+#app.vc.aprov.exitoso=S
+#app.estado.activo=Activated
+#app.estado.pendiente=Pending
+#app.estado.aprovisionado=Activation
+#app.estado.no.aprovisionado=Inventory
+#app.estado.inactivo=I
+#app.country.code=57
+##################### METODOS DE LA APP ######################################
+#app.currency.country=COP
+#app.nom.metodo.change=changePlan
+#app.nom.metodo.profile=getDownloadProfileStatus
+#app.nom.metodo.create.user=createUser
+#app.nom.metodo.update.user=updateUser
+#app.nom.metodo.delete.user=deleteUser
+#app.nom.metodo.query.user=queryUser
+#app.nom.metodo.provisioning=provisioning
+#app.nom.metodo.unprovisioning=unProvisioning
+#app.nom.metodo.buy.product=buyProduct
+#app.nom.metodo.change.sim=changeSim
+#
+#
+#app.endpoint.notificacion=http://172.22.61.94:9024/WSNotificacionHUB/WSNotificacionHUBService?WSDL
+#app.enter.pr.id=GMCLAROCO
+################ RESPUESTAS POR METODO EXITOSAS ##############################
+#app.response.buy.product.ok=200
+#app.response.buy.product.ok.description=Request has been validate and processing
+#app.response.change.sim.ok=200
+#app.response.change.sim.ok.description=Request has been validate and processing
+############ DAVID GORDILLO #################################################
+#app.nom.metodo.get.product=getProduct
+#app.sql.procedure.get.product=
+#app.response.get.product.ok=200
+#app.nom.metodo.cancel.product=cancelProduct
+#app.sql.procedure.cancel.product=
+#app.response.cancel.product.ok=200
+#app.endpoint.notificacion=http://172.22.87.27:8101/WSNotificacionHUB/WSNotificacionHUBService?WSDL
+#app.enter.pr.id=GMCLAROCO
+#
+#app.pruebas.escenario=1
+#
+#######################ARCHIVO_CONTROL_TAREAS##############################################
+#app.archivo.uuid=/PropertiesAppWL/WSHUBIoT/{0}ArchivoUUID.txt
+#
+#
+######################
+#app.sql.actualizar.control.pase={ call INH_SMO.PKG_HUB_IOT.PRC_UPDATE_CTRL_PASE(?, ?, ?, ?, ?, ?, ?) }
+#app.sql.insertar.control.pase={ call INH_SMO.PKG_HUB_IOT.PRC_INSERT_CTRL_PASE(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }
+#app.cantidad.reintentos.control=1
+#app.cantidad.tiempo.reintentos.control=3000
+#app.respuesta.ok=1
+#app.formato.fecha.activa.pase=dd/MM/yyyy HH:mm:ss
+#app.formato.fecha.infopase=dd/MM/yyyy HH:mm:ss
+#app.tipo.actualizacion=Cancel
+#app.formato.fecha.orderid=yyyyMMddHHmmssSSS
+#app.sleep.thread.provisioning=1000
+#app.buy.product.factor.mb=1048576
+#sql.crea.tickler= call procreartickler(?, ?, ?, ?, ?, ?, ?, ?, ?)
+#app.tickler.code.buy=COMPQ
+#app.tickler.code.cancel=CANPQ
+#app.tickler.desc.corta.buy=PQ IOT_CarConectado
+#app.tickler.desc.larga.buy=Solicitud de aprovisionamiento paquete IOT_Carro Conectado
+#app.tickler.desc.corta.cancel=Can_PQ IOT_CarConec
+#app.tickler.desc.larga.cancel=Solicitud de cancelaci\u00f3n paquete IOT_Carro Conectado
+#app.tickler.update=Yes
+#app.tickler.ok=1
+#
+#app.sql.actualiza.pase.comcorp=call inh_newac.pkg_pases_iot.iot_cancel_expired_products(?, ?, ?, ?)
+#consulta.tiempo.espera.actualiza.pase=10
+#app.actualiza.pase.ok=|1 (Operacion exitosa)|
+#app.reintentos.actualiza.pase.comcorp=3
+#app.sleep.hilo.actualiza.pase.comcorp=180000
+#app.formato.fecha.activa.pase=dd/MM/yyyy HH:mm:ss
+#app.cien.porciento=100%
+#
+#app.str.cero=0
+#app.flag.registro.cap=1
+#
+################################
+#app.codigo.pl.ok-27=-27
+#app.notificacion.unprovisioning=Desactivacion
+#app.notificacion.activacion.sistema=CAP
+#app.codigo.pl.ok-07=-7
+#app.prc.desaprovisiona.exito=1
+#app.notificacion.desactivacion.estado=Desactivation
+#
+#app.notificacion.changeplan=Cambio Plan
+#app.notificacion.changeplan.estado=changePlan
+#app.notificacion.changeplan.sistema=CAP
+#
+#app.codigo.pl.ok-16=-16
+#app.prc.changeplan.exito=0
+#app.nom.countries.provisioning=|COL|
+#app.nom.service.names.provisioning=|provisioning|
+#app.nom.countries.unprovisioning=|COL|
+#app.nom.service.names.unprovisioning=|unProvisioning|
+#app.nom.countries.changeplan=|COL|
+#app.nom.service.names.changeplan=|changePlan|
+#app.nom.countries.changesim=|COL|
+#app.nom.service.names.changesim=|changeSim|
+#app.nom.providerid.changesim=|PA00002747|
+#
+#consulta.tiempo.espera.notificacion.hub=20000
+#app.notificacion.changesim=CambioSIM
+#app.notificacion.changesim.sistema=CAP
+#app.notificacion.changesim.estado=Activated
+#
+#app.notificacion.activacion.estado=Activo
+#app.notificacion.activacion=provisioning
+#app.imsi.default=
+#app.tmcode.default=
+#
+##############################################################################
+#
+#app.nom.countries.queryplanlist=|COL|
+#app.nom.service.names.queryplanlist=|queryPlanList|
+#app.nom.service.names.queryplanlist=|queryPlanL|
+#app.nom.metodo.query.plan.list=queryPlanList
+#app.profile.type.query.plan.list=profileType
+#app.profile.type.valor.query.plan.list=CLARO_COL_CO23.02
+#app.nom.service.names.downloadprofile=|getDownloadProfileStatus|
+#app.nom.countries.downloadprofile=|COL|
+#app.nom.provider.downloadprofile=|PA00002747|
+#app.downloadprofile.ok.pl-24=-24
+#app.downloadprofile.ok.pl=0
+#app.nom.countries.create.user=|COL|
+#app.nom.service.names.create.user=|createUser|
+#app.nom.provider.create.user=|PA00002747|
+#app.ok.pl.create.user=0
+#app.nom.countries.update.user=|COL|
+#app.nom.service.names.update.user=|updateUser|
+#app.nom.provider.update.user=|PA00002747|
+#app.update.user.ok.pl=0
+#app.update.user.ok.pl-1=-1
+#app.nom.countries.delete.user=|COL|
+#app.nom.service.names.delete.user=|deleteUser|
+#app.nom.provider.delete.user=|PA00002747|
+#app.delete.user.ok.pl=0
+#app.delete.user.ok.pl-1=-1
+#app.nom.countries.query.user=|COL|
+#app.nom.service.names.query.user=|queryUser|
+#app.nom.provider.query.user=|PA00002747|
+#app.query.user.ok.pl=0
+#app.query.user.ok.pl-1=-1
+#app.nom.countries.buy.product=|COL|
+#app.nom.service.names.buy.product=|buyProduct|
+#app.nom.provider.buy.product=|PA00002747|
+#app.pl.buy.product.-2=-2
+#app.nom.countries.get.product=|COL|
+#app.nom.service.names.get.product=|getProducts|
+#app.nom.provider.get.product=|PA00002747|
+#app.nom.countries.cancel.product=|COL|
+#app.nom.service.names.cancel.product=|cancelProduct|
+#app.nom.provider.cancel.product=|PA00002747|
+#app.ok.pl.get.product=0
+##datasource produccion
+#app.tipo.conexion.BSCS_PROD=JNDI
+#app.conexion.BSCS_PROD=BSCS
+#data.base.jndi.data.source.BSCS_PROD=jdbcBSCSProd
+#
+#app.nom.countries.cancel.product=|COL|
+#app.nom.service.names.cancel.product=|cancelProduct|
+#app.nom.provider.cancel.product=|PA00002747|
+#
+#app.query.user.operator.default= 
+#app.query.user.iccid.default= 
+#app.query.user.imsi.default= 
+#app.pl.valida.pases.expirados=call INH_SMO.PKG_HUB_IOT.PRC_VALIDAR_PASES_EXPIRADOS (?, ?, ?, ?)
+#app.valida.pases.palabra=Expired
+#app.valida.pases.meses=6
+#
+#app.desactivacion.sistema=CAP
+#app.nom.enterprise.id.get.product=|GMCLAROCO|
+#app.formato.effective.date=yyyy-MM-dd'T'HH:mm:ss'Z'
+#app.currency.cancel.product=COP
+#app.refund.cancel.product=0
+#app.valor.57.msisdn=57
+#app.main.balance.get.product=0.0
+#app.subscribertype.get.product=Postpago
+#
+#app.time.zone.effective.date=GMT
+#app.time.zone.oreder.id=GMT
+#app.time.zone.pases.type=GMT
+#app.time.zone.pases=GMT
+#app.time.zone.comcorp=GMT
+#
+#app.sql.consulta.maestra.activa={ call SYSADM.PKG_IOT.PRC_CONSULTA_MAESTRA_ACTIVA (?,?,?,?,?,?,?) }
+#app.time.out.consulta.maestra.activa=30000
+#app.ok.pl.consulta.maestra.activa=0
+#app.time.out.make.activation=120000
+#app.endpoint.make.activation=http://wpoliqa03.comcel.com.co/Comcel.Pol.ActivationService/ActivationService.svc?wsdl
+#app.make.activation.product.id=500
+#app.make.activation.user.code=ECM6363A
+#app.act.automatica.canal=HUB_IoT
+#app.pl.activacion.automatica={ call SYSADM.PKG_ACTAUTOMATICA.ProActAutomatica (?,?,?,?) }
+#app.ok.pl.act.automatica=0
+#app.poliedro.include.master.code=true
+#app.exception.903=Error en los legados
+#app.reintentos.provisioning=3
+#app.sleep.intentos=1000
+#
+#app.poliedro.dealer.id=CAC11.00007
+#app.poliedro.seller.id=123456
+#app.poliedro.msisdn=0
+#app.poliedro.imei.default=
+#
+##delete user CR 4
+#app.sql.backup.control.pase={ call INH_SMO.PKG_HUB_IOT.PRC_BACKUP_CTRL_PASE(?, ?, ?, ?) }
+#app.sql.delete.control.pase={ call INH_SMO.PKG_HUB_IOT.PRC_DELETE_CTRL_PASE(?, ?, ?) }
+#app.sql.actestado.suscriptor.exito=0
+#app.prc.backup.ctrl.pase.exito=1
+#app.prc.delete.ctrl.pase.exito=1
+#app.tiempo.vigencia.tbl.ctrl.pase.backup=5
+#
+#app.poliedro.ok.make.activation=1
+#
+#app.time.out.act.automatica=3000
