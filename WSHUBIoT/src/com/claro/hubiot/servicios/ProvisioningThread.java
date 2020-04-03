@@ -112,10 +112,14 @@ public class ProvisioningThread extends Thread {
 				}
 				
 				//Brief 31072 - Paquetes y Planes 
-				gestionProvisioningIoTReq(request, tmcodeAMX);
+				if(gestionProvisioningIoTReq(request, tmcodeAMX) != Integer.parseInt(prop.obtenerPropiedad(Constantes.PRC_GESTION_PAQ_IOT_EXITOSO))){
+					logger.error("Error de Negocio: en el procesamiento de la solicitud");
+					GeneradorResponses.generarRespuesta(response, Constantes.ERROR_ACT);
+				}
 				//Brief 31072 - Paquetes y Planes
 				
 				notifyProvisioning(response, imsi, request.getMsisdn());
+				
 			} catch (BusinessException e) {
 				logger.error("Error de Negocio: fallo en la notificacion", e);
 				GeneradorResponses.generarRespuesta(response, Constantes.ERROR_ACT);
@@ -192,7 +196,7 @@ public class ProvisioningThread extends Thread {
 	 * @param request
 	 * @param tmcodeAMX
 	 */
-	private void gestionProvisioningIoTReq(ProvisioningRequest request,String tmcodeAMX) throws BusinessException{
+	private int gestionProvisioningIoTReq(ProvisioningRequest request,String tmcodeAMX) throws BusinessException{
 		GestionPaquetesIOTRequest gestionIoTReq = new GestionPaquetesIOTRequest();
 		gestionIoTReq.setMin(request.getMsisdn());
 		gestionIoTReq.setImsi(request.getImsi());
@@ -200,6 +204,6 @@ public class ProvisioningThread extends Thread {
 		gestionIoTReq.setTmCodeNew(Integer.valueOf(tmcodeAMX));
 		gestionIoTReq.setAccion(Constantes.PAQ_IOT_V_ACCION_AL);
 		
-		ServiciosBD.gestionPaQIoT(gestionIoTReq);
+		return ServiciosBD.gestionPaQIoT(gestionIoTReq);
     }
 }
