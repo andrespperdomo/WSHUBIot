@@ -1976,12 +1976,13 @@ public class ServiciosBD {
 	 * @param request
 	 * @throws BusinessException
 	 */
-	public static void gestionPaQIoT(GestionPaquetesIOTRequest request) throws BusinessException{
+	public static int gestionPaQIoT(GestionPaquetesIOTRequest request) throws BusinessException{
 		logger.info("Inicio de metodo ServiciosBD gestionPaQIoT - PL - PRC_GESTION_PAQ_IOT - BILLRO");
 		Connection con = null;
 		CallableStatement cs = null;
 		ResultSet rs = null;
-		String sql = prop.obtenerPropiedad(Constantes.PRC_GESTION_PAQ_IOT);		
+		String sql = prop.obtenerPropiedad(Constantes.PRC_GESTION_PAQ_IOT);
+		int respuesta;
 		try {
 			if (sql == null || sql.isEmpty())
 				throw new BusinessException(Constantes._100);
@@ -2012,9 +2013,12 @@ public class ServiciosBD {
 			logger.info("Tiempo de procesamiento de gestionPaQIoT " + timeFin + " ms");
 			logger.info( "Respuesta del procedimento PRC_GESTION_PAQ_IOT:" +cs.getInt(7)  + " - "+ cs.getString(8));
 			
-			if(!cs.getString(7).equalsIgnoreCase(prop.obtenerPropiedad(Constantes.PRC_GESTION_PAQ_IOT_EXITOSO))){
-				logger.info("Error controlado de PRC_GESTION_PAQ_IOT: " + cs.getString(8));				
+			if(cs.getInt(7) != Integer.parseInt(prop.obtenerPropiedad(Constantes.PRC_GESTION_PAQ_IOT_EXITOSO))) {
+				logger.info("Error controlado de PRC_GESTION_PAQ_IOT: " + cs.getString(8));
 			}
+			
+			respuesta = cs.getInt(7);
+			
 		} catch (Exception e) {
 			logger.error("Ocurrio una excepcion en gestionPaqIoT: ", e);
 			throw new BusinessException(Constantes._101);
@@ -2023,6 +2027,7 @@ public class ServiciosBD {
 			Conexion.cerrar(cs);
 			Conexion.cerrar(con);
 		}
+		return respuesta;
 
 	}
 	
