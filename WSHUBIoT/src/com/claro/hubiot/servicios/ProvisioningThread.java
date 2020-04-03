@@ -114,7 +114,7 @@ public class ProvisioningThread extends Thread {
 				//Brief 31072 - Paquetes y Planes 
 				if(gestionProvisioningIoTReq(request, tmcodeAMX) != Integer.parseInt(prop.obtenerPropiedad(Constantes.PRC_GESTION_PAQ_IOT_EXITOSO))){
 					logger.error("Error de Negocio: en el procesamiento de la solicitud");
-					GeneradorResponses.generarRespuesta(response, Constantes.ERROR_ACT);
+					throw new BusinessException(Constantes.ERROR_PROCEDIMIENTO);
 				}
 				//Brief 31072 - Paquetes y Planes
 				
