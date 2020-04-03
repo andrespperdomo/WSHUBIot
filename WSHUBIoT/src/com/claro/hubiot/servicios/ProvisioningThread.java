@@ -12,6 +12,7 @@ import com.claro.cap.servicios.*;
 import com.claro.hubiot.database.ServiciosBD;
 import com.claro.hubiot.dto.ChangePlanRequest;
 import com.claro.hubiot.dto.ChangePlanResponse;
+import com.claro.hubiot.dto.GestionPaquetesIOTRequest;
 import com.claro.hubiot.dto.LlavePlanes;
 import com.claro.hubiot.dto.PlanInfo;
 import com.claro.hubiot.dto.ProvisioningRequest;
@@ -44,7 +45,7 @@ public class ProvisioningThread extends Thread {
 	@Override
 	public void run() {
 		String imsi = "";
-		String tmcodeAMX;
+		String tmcodeAMX ="";
 		try {
 			ThreadContext.put("UUID", Long.toString(ini.getUuid()));
 			this.sleep(Long.parseLong(prop.obtenerPropiedad(Constantes.SLEEP_THREAD)));
@@ -109,6 +110,11 @@ public class ProvisioningThread extends Thread {
 						GeneradorResponses.generarRespuesta(response, Constantes.ICCID_ALREADY_IN_USE);
 					}
 				}
+				
+				//Brief 31072 - Paquetes y Planes 
+				gestionProvisioningIoTReq(request, tmcodeAMX);
+				//Brief 31072 - Paquetes y Planes
+				
 				notifyProvisioning(response, imsi, request.getMsisdn());
 			} catch (BusinessException e) {
 				logger.error("Error de Negocio: fallo en la notificacion", e);
@@ -180,4 +186,20 @@ public class ProvisioningThread extends Thread {
 		}
 		return tmcode;
 	}
+	
+	/**
+	 * Brief 31072 - Paquetes y Planes
+	 * @param request
+	 * @param tmcodeAMX
+	 */
+	private void gestionProvisioningIoTReq(ProvisioningRequest request,String tmcodeAMX) throws BusinessException{
+		GestionPaquetesIOTRequest gestionIoTReq = new GestionPaquetesIOTRequest();
+		gestionIoTReq.setMin(request.getMsisdn());
+		gestionIoTReq.setImsi(request.getImsi());
+		gestionIoTReq.setCoid(Double.parseDouble(request.getCorrelatorId()));
+		gestionIoTReq.setTmCodeNew(Integer.valueOf(tmcodeAMX));
+		gestionIoTReq.setAccion(Constantes.PAQ_IOT_V_ACCION_AL);
+		
+		ServiciosBD.gestionPaQIoT(gestionIoTReq);
+    }
 }

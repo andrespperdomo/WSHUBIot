@@ -29,6 +29,7 @@ import com.claro.hubiot.dto.CursorCreateUser;
 import com.claro.hubiot.dto.CursorQueryUser;
 import com.claro.hubiot.dto.DeleteUserRequest;
 import com.claro.hubiot.dto.DeleteUserResponse;
+import com.claro.hubiot.dto.GestionPaquetesIOTRequest;
 import com.claro.hubiot.dto.GetDownloadProfileStatusRequest;
 import com.claro.hubiot.dto.GetDownloadProfileStatusResponse;
 import com.claro.hubiot.dto.LlavePlanes;
@@ -1969,6 +1970,62 @@ public class ServiciosBD {
 		}
 		return resp;
 	}
+	
+	/**
+	 * Brief 31072 - Paquetes y Planes
+	 * @param request
+	 * @throws BusinessException
+	 */
+	public static void gestionPaQIoT(GestionPaquetesIOTRequest request) throws BusinessException{
+		logger.info("Inicio de metodo ServiciosBD gestionPaQIoT - PL - PRC_GESTION_PAQ_IOT - BILLRO");
+		Connection con = null;
+		CallableStatement cs = null;
+		ResultSet rs = null;
+		String sql = prop.obtenerPropiedad(Constantes.PRC_GESTION_PAQ_IOT);		
+		try {
+			if (sql == null || sql.isEmpty())
+				throw new BusinessException(Constantes._100);
+			con = Conexion.getInstance().getConnection(prop.obtenerPropiedad(Constantes.BASE_DATOS_BILLRO),
+					prop.obtenerPropiedad(Constantes.TIPO_CONEXION_BILLRO));
+
+			cs = con.prepareCall(sql);			
+			cs.setString(1, request.getAccion());
+			cs.setString(2, request.getMin());
+			cs.setDouble(3, request.getCoid());
+			cs.setString(4, request.getImsi());
+			cs.setInt(5, request.getTmCodeNew());
+			
+			if(request.getAccion().equals(Constantes.PAQ_IOT_V_ACCION_AL) || request.getAccion().equals(Constantes.PAQ_IOT_V_ACCION_DL)) {
+		        cs.setNull(6, OracleTypes.NUMBER);
+			}
+			else {
+				cs.setInt(6, request.getTmCodeOld());	
+			}
+			
+			cs.registerOutParameter(7, OracleTypes.NUMBER);
+			cs.registerOutParameter(8, OracleTypes.VARCHAR);
+			
+			long timeIni = System.currentTimeMillis();
+			logger.info("Parametros de entrada a gestionPaQIoT:" + request.toString());
+			cs.execute();
+			long timeFin = System.currentTimeMillis() - timeIni;
+			logger.info("Tiempo de procesamiento de gestionPaQIoT " + timeFin + " ms");
+			logger.info( "Respuesta del procedimento PRC_GESTION_PAQ_IOT:" +cs.getInt(7)  + " - "+ cs.getString(8));
+			
+			if(!cs.getString(7).equalsIgnoreCase(prop.obtenerPropiedad(Constantes.PRC_GESTION_PAQ_IOT_EXITOSO))){
+				logger.info("Error controlado de PRC_GESTION_PAQ_IOT: " + cs.getString(8));				
+			}
+		} catch (Exception e) {
+			logger.error("Ocurrio una excepcion en gestionPaqIoT: ", e);
+			throw new BusinessException(Constantes._101);
+		} finally {
+			Conexion.cerrar(rs);
+			Conexion.cerrar(cs);
+			Conexion.cerrar(con);
+		}
+
+	}
+	
 }
 
 

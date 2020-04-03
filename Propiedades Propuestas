@@ -1,0 +1,10 @@
+app.tipo.conexion.BILLRO=JNDI
+app.conexion.BILLRO=BILLRO
+
+data.base.jndi.data.source.BILLRO=jdbcBILLRO
+
+app.gestion.paq.iot.accion.cambioplan=C
+app.gestion.paq.iot.accion.activalinea=A
+app.gestion.paq.iot.accion.desactivalinea=D
+app.gestion.paq.iot.sql={ call BILLRAC.PKG_IOT_PAQRA.PRC_GESTION_PAQ_IOT(?, ?, ?, ?, ?, ?, ?, ?) }
+app.gestion.paq.iot.exitoso=0

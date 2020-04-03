@@ -384,4 +384,12 @@ public abstract class Constantes {
 	public static final String VALOR_TYPE_ES = "app.valor.type.es";
 	public static final String CONSULTA_OFFER_MESSAGE = "app.consulta.offer.message";
 	public static final String CONSULTA_PROFILE_TYPE = "app.consulta.profile.type";
+	
+	/*Brief 31072 - Paquetes y Planes*/
+	public static final String PRC_GESTION_PAQ_IOT = "app.gestion.paq.iot.sql";
+	public static final String PAQ_IOT_V_ACCION_AL = "app.gestion.paq.iot.accion.activalinea";
+	public static final String PRC_GESTION_PAQ_IOT_EXITOSO = "app.gestion.paq.iot.exitoso";
+	public static final String PAQ_IOT_V_ACCION_DL = "app.gestion.paq.iot.accion.desactivalinea";
+	public static final String BASE_DATOS_BILLRO = "app.conexion.BILLRO";
+	public static final String TIPO_CONEXION_BILLRO = "app.tipo.conexion.BILLRO";
 }
