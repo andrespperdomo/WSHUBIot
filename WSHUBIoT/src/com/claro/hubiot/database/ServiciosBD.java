@@ -2018,7 +2018,7 @@ public class ServiciosBD {
 			}
 			
 			respuesta = cs.getInt(7);
-			
+			 
 		} catch (Exception e) {
 			logger.error("Ocurrio una excepcion en gestionPaqIoT: ", e);
 			throw new BusinessException(Constantes._101);
